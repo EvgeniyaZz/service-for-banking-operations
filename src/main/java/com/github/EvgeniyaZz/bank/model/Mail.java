@@ -11,6 +11,7 @@ import org.hibernate.annotations.OnDeleteAction;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @ToString(callSuper = true, exclude = {"user"})
@@ -29,5 +30,15 @@ public class Mail extends AbstractBaseEntity implements HasId {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @OnDelete(action = OnDeleteAction.CASCADE)
+    @NotNull
     private User user;
+
+    public Mail(String email) {
+        this.email = email;
+    }
+
+    public Mail(String email, User user) {
+        this.email = email;
+        this.user = user;
+    }
 }

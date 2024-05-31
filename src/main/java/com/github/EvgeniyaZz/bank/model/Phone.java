@@ -10,6 +10,8 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @ToString(callSuper = true, exclude = {"user"})
 @Setter
@@ -20,10 +22,21 @@ import javax.validation.constraints.NotBlank;
 public class Phone extends AbstractBaseEntity implements HasId {
 
     @NotBlank
+    @Size(min = 7, max = 16)
     @Column(name = "number", nullable = false, unique = true)
     private String number;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @OnDelete(action = OnDeleteAction.CASCADE)
+    @NotNull
     private User user;
+
+    public Phone(String number) {
+        this.number = number;
+    }
+
+    public Phone(String number, User user) {
+        this.number = number;
+        this.user = user;
+    }
 }

@@ -25,17 +25,17 @@ import java.util.List;
 public class User extends AbstractBaseEntity implements HasId {
 
     @NotBlank
-    @Size(min = 2, max = 128)
+    @Size(min = 2, max = 20)
     @Column(name = "firstname", nullable = false)
     private String firstname;
 
     @NotBlank
-    @Size(min = 2, max = 128)
+    @Size(min = 2, max = 30)
     @Column(name = "lastname", nullable = false)
     private String lastname;
 
     @NotBlank
-    @Size(min = 2, max = 128)
+    @Size(min = 2, max = 30)
     @Column(name = "middlename", nullable = false)
     private String middlename;
 
@@ -56,4 +56,19 @@ public class User extends AbstractBaseEntity implements HasId {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     @OnDelete(action = OnDeleteAction.CASCADE)
     private List<Mail> mails;
+
+    public User(String firstname, String lastname, String middlename, LocalDate birthDate) {
+        this.firstname=firstname;
+        this.lastname=lastname;
+        this.middlename=middlename;
+        this.birthDate=birthDate;
+    }
+
+    public User(int id, String firstname, String lastname, String middlename, LocalDate birthDate) {
+        super(id);
+        this.firstname=firstname;
+        this.lastname=lastname;
+        this.middlename=middlename;
+        this.birthDate=birthDate;
+    }
 }

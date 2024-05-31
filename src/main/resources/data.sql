@@ -8,7 +8,7 @@ VALUES ('Захарова', 'Евгения', 'Владимировна', '1992-
        ('Иванов', 'Иван', 'Иванович', '1971-11-02');
 
 INSERT INTO phone (user_id, number)
-VALUES (1, '79500482578'),
+VALUES (1, '79500024743'),
        (2, '79113456789');
 
 INSERT INTO mail (user_id, email)
