@@ -1,5 +1,6 @@
 package com.github.EvgeniyaZz.bank.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.github.EvgeniyaZz.bank.HasId;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -29,6 +30,7 @@ public class Phone extends AbstractBaseEntity implements HasId {
     @ManyToOne(fetch = FetchType.LAZY)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @NotNull
+    @JsonBackReference(value = "user-phone")
     private User user;
 
     public Phone(String number) {
@@ -38,5 +40,10 @@ public class Phone extends AbstractBaseEntity implements HasId {
     public Phone(String number, User user) {
         this.number = number;
         this.user = user;
+    }
+
+    public Phone(Integer id, String number) {
+        super(id);
+        this.number = number;
     }
 }

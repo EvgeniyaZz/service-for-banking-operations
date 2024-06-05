@@ -1,5 +1,6 @@
 package com.github.EvgeniyaZz.bank.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.github.EvgeniyaZz.bank.HasId;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -44,17 +45,19 @@ public class User extends AbstractBaseEntity implements HasId {
     private LocalDate birthDate;
 
     @OneToOne
-    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name = "account_id", nullable = false)
     private Account account;
 
     @NotEmpty
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonManagedReference(value = "user-phone")
     private List<Phone> phones;
 
     @NotEmpty
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonManagedReference(value = "user-mail")
     private List<Mail> mails;
 
     public User(String firstname, String lastname, String middlename, LocalDate birthDate) {
@@ -64,11 +67,20 @@ public class User extends AbstractBaseEntity implements HasId {
         this.birthDate=birthDate;
     }
 
-    public User(int id, String firstname, String lastname, String middlename, LocalDate birthDate) {
+    public User(String firstname, String lastname, String middlename, LocalDate birthDate, Account account) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.middlename = middlename;
+        this.birthDate = birthDate;
+        this.account = account;
+    }
+
+    public User(int id, String firstname, String lastname, String middlename, LocalDate birthDate, Account account) {
         super(id);
         this.firstname=firstname;
         this.lastname=lastname;
         this.middlename=middlename;
         this.birthDate=birthDate;
+        this.account = account;
     }
 }

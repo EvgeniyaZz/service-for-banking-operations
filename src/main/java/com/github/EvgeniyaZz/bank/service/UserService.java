@@ -1,6 +1,6 @@
 package com.github.EvgeniyaZz.bank.service;
 
-import com.github.EvgeniyaZz.bank.dto.PostUserDto;
+import com.github.EvgeniyaZz.bank.dto.SignUpRequest;
 import com.github.EvgeniyaZz.bank.model.Account;
 import com.github.EvgeniyaZz.bank.model.Mail;
 import com.github.EvgeniyaZz.bank.model.Phone;
@@ -23,12 +23,16 @@ public class UserService {
     private final MailRepository mailRepository;
 
     @Transactional
-    public User save(PostUserDto userDto) {
+    public User save(SignUpRequest userDto) {
+        Account account = accountRepository.save(new Account(userDto.getLogin(), userDto.getPassword(), userDto.getDepositMoney()));
         User user = userRepository.save(new User(userDto.getFirstname(), userDto.getLastname(), userDto.getMiddlename(),
-                userDto.getBirthDate()));
-        accountRepository.save(new Account(userDto.getLogin(), userDto.getPassword(), user, userDto.getDepositMoney()));
+                userDto.getBirthDate(), account));
         phoneRepository.save(new Phone(userDto.getNumber(), user));
         mailRepository.save(new Mail(userDto.getEmail(), user));
         return user;
+    }
+
+    public User getByLogin(String login) {
+        return userRepository.getExistedByLogin(login);
     }
 }

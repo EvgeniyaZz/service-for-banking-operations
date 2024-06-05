@@ -1,25 +1,24 @@
 package com.github.EvgeniyaZz.bank.model;
 
 import com.github.EvgeniyaZz.bank.HasId;
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.validator.constraints.Range;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-@ToString(callSuper = true, exclude = {"user", "password"})
+@ToString(callSuper = true, exclude = "password")
 @Setter
 @Getter
 @NoArgsConstructor
 @Entity
-@Table(name = "account", uniqueConstraints = @UniqueConstraint(columnNames = "user_id", name = "user_unique_account_idx"))
+@Table(name = "account")
 public class Account extends AbstractBaseEntity implements HasId {
 
     @NotBlank
@@ -32,12 +31,7 @@ public class Account extends AbstractBaseEntity implements HasId {
     @Column(name = "password", nullable = false)
     private String password;
 
-    @OneToOne
-    @NotNull
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    private User user;
-
-    @Column(name = "depositMoney", nullable = false)
+    @Column(name = "deposit_money", nullable = false)
     @Range(min = 0)
     private int depositMoney;
 
@@ -47,10 +41,10 @@ public class Account extends AbstractBaseEntity implements HasId {
         this.depositMoney = depositMoney;
     }
 
-    public Account(String login, String password, User user, int depositMoney) {
+    public Account(Integer id, String login, String password, int depositMoney) {
+        super(id);
         this.login = login;
         this.password = password;
-        this.user = user;
         this.depositMoney = depositMoney;
     }
 }
