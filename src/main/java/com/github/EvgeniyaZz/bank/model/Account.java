@@ -10,10 +10,7 @@ import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.validator.constraints.Range;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
-
-@ToString(callSuper = true, exclude = "password")
+@ToString(callSuper = true)
 @Setter
 @Getter
 @NoArgsConstructor
@@ -21,30 +18,16 @@ import javax.validation.constraints.Size;
 @Table(name = "account")
 public class Account extends AbstractBaseEntity implements HasId {
 
-    @NotBlank
-    @Size(min = 2, max = 32)
-    @Column(name = "login", nullable = false, unique = true)
-    private String login;
-
-    @NotBlank
-    @Size(min = 5, max = 32)
-    @Column(name = "password", nullable = false)
-    private String password;
-
-    @Column(name = "deposit_money", nullable = false)
+    @Column(name = "account", nullable = false)
     @Range(min = 0)
-    private int depositMoney;
+    private int account;
 
-    public Account(String login, String password, int depositMoney) {
-        this.login = login;
-        this.password = password;
-        this.depositMoney = depositMoney;
+    public Account(int account) {
+        this.account = account;
     }
 
-    public Account(Integer id, String login, String password, int depositMoney) {
+    public Account(Integer id, int account) {
         super(id);
-        this.login = login;
-        this.password = password;
-        this.depositMoney = depositMoney;
+        this.account = account;
     }
 }

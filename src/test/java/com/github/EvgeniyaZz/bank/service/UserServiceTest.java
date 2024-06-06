@@ -1,6 +1,6 @@
 package com.github.EvgeniyaZz.bank.service;
 
-import com.github.EvgeniyaZz.bank.dto.SignUpRequest;
+import com.github.EvgeniyaZz.bank.dto.UserDto;
 import com.github.EvgeniyaZz.bank.model.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,14 +11,14 @@ import java.time.LocalDate;
 import static com.github.EvgeniyaZz.bank.TestData.*;
 
 @SpringBootTest
-class UserServiceTest {
+class UserServiceTest extends AbstractServiceTest {
 
     @Autowired
     UserService service;
 
     @Test
     void save() {
-        User user = service.save(new SignUpRequest("Екатерина", "Смирнова", "Петровна",
+        User user = service.save(new UserDto("Екатерина", "Смирнова", "Петровна",
                 LocalDate.of(1975, 3, 5), "kate555", "password", "79112458989",
                 "kate@yandex.ru", 5000));
 

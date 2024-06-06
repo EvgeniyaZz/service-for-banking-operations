@@ -1,20 +1,20 @@
 package com.github.EvgeniyaZz.bank.dto;
 
 import com.github.EvgeniyaZz.bank.HasId;
+import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.EqualsAndHashCode;
-import lombok.ToString;
 import lombok.Value;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
 @Value
-@ToString(callSuper = true, exclude = "password")
 @EqualsAndHashCode(callSuper = true)
-public class PostUserDto extends BaseDto implements HasId {
+@Schema(description = "Запрос на регистрацию")
+public class UserDto extends BaseDto implements HasId {
 
     @NotBlank
     @Size(min = 2, max = 20)
@@ -48,11 +48,10 @@ public class PostUserDto extends BaseDto implements HasId {
     @Email
     String email;
 
-    int depositMoney;
+    int account;
 
-    public PostUserDto(Integer id, String firstname, String lastname, String middlename, LocalDate birthDate,
-                       String login, String password, String number, String email, int depositMoney) {
-        super(id);
+    public UserDto(String firstname, String lastname, String middlename, LocalDate birthDate,
+                   String login, String password, String number, String email, int account) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.middlename = middlename;
@@ -61,6 +60,6 @@ public class PostUserDto extends BaseDto implements HasId {
         this.password = password;
         this.number = number;
         this.email = email;
-        this.depositMoney = depositMoney;
+        this.account = account;
     }
 }

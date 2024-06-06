@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public interface UserRepository extends BaseRepository<User> {
 
-    @Query("SELECT u FROM User u WHERE u.account.login = :login")
+    @Query("SELECT u FROM User u WHERE u.login = :login")
     Optional<User> findByLogin(String login);
 
     default User getExistedByLogin(String login) {
