@@ -14,7 +14,7 @@ import java.time.LocalDate;
 @Value
 @EqualsAndHashCode(callSuper = true)
 @Schema(description = "Запрос на регистрацию")
-public class UserDto extends BaseDto implements HasId {
+public class SignUpRequest extends BaseDto implements HasId {
 
     @NotBlank
     @Size(min = 2, max = 20)
@@ -50,8 +50,8 @@ public class UserDto extends BaseDto implements HasId {
 
     int account;
 
-    public UserDto(String firstname, String lastname, String middlename, LocalDate birthDate,
-                   String login, String password, String number, String email, int account) {
+    public SignUpRequest(String firstname, String lastname, String middlename, LocalDate birthDate,
+                         String login, String password, String number, String email, int account) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.middlename = middlename;
