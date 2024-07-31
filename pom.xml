@@ -17,7 +17,6 @@
 	<properties>
 		<java.version>17</java.version>
 		<springdoc.version>2.5.0</springdoc.version>
-		<jsonwebtoken.version>0.12.3</jsonwebtoken.version>
 	</properties>
 
 	<dependencies>
@@ -43,19 +42,8 @@
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>io.jsonwebtoken</groupId>
-			<artifactId>jjwt-api</artifactId>
-			<version>${jsonwebtoken.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>io.jsonwebtoken</groupId>
-			<artifactId>jjwt-impl</artifactId>
-			<version>${jsonwebtoken.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>io.jsonwebtoken</groupId>
-			<artifactId>jjwt-jackson</artifactId>
-			<version>${jsonwebtoken.version}</version>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
 		</dependency>
 
 		<!-- Test -->

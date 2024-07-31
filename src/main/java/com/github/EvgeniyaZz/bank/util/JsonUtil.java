@@ -1,4 +1,4 @@
-package com.github.EvgeniyaZz.bank.web.json;
+package com.github.EvgeniyaZz.bank.util;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;

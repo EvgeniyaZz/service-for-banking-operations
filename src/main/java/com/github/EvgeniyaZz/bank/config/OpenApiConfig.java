@@ -29,10 +29,10 @@ public class OpenApiConfig {
                                             .scheme("basic"))
                             )
                             .info(new Info().title("JWT Token").description("""
-                                    Приложение по <a href='https://javaops.ru/view/cloudjava'>курсу CloudJava</a>
+                                    Service for banking operations
                                     <p>Тестовые креденшелы:<br>
-                                       - user@gmail.com / password<br>
-                                       - admin@javaops.ru / admin
+                                       - user1 / 1234500<br>
+                                       - user2 / 1230000
                                     </p>
                                     """));
 

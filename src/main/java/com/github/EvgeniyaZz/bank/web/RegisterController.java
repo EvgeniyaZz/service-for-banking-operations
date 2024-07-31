@@ -32,7 +32,7 @@ public class RegisterController {
     @Operation(summary = "Регистрация пользователя")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<User> createWithLocation(@Valid @RequestBody SignUpRequest request) {
+    public ResponseEntity<User> register(@Valid @RequestBody SignUpRequest request) {
         log.info("register {}", request);
         checkNew(request);
         User created = service.save(request);
